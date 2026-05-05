@@ -5,26 +5,19 @@ echo        EP CODE AUTOMATIC WEBSITE UPDATER
 echo ========================================================
 echo.
 
-:: Configure Git silently so it doesn't throw errors
+:: Configure Git silently
 git config --global user.name "Kartik"
 git config --global user.email "kartik@example.com"
 
+:: Ensure git is initialized
 if not exist .git (
-    echo Setting up auto-update for the first time...
     git init
     git branch -m main
-    
-    :ask_url
-    echo.
-    echo Please enter your GitHub Repository URL 
-    echo Example: https://github.com/yourusername/yonosite.git
-    set /p repo_url="Repository URL: "
-    if "%repo_url%"=="" goto ask_url
-    
-    git remote add origin "%repo_url%"
-    echo Successfully connected to your repository!
-    echo.
 )
+
+:: Automatically set the correct GitHub URL so you never have to type it!
+git remote remove origin 2>nul
+git remote add origin https://github.com/kartikmpatel90-cyber/earn-telegram-site.git
 
 echo Scanning for new images and code updates...
 git add .
