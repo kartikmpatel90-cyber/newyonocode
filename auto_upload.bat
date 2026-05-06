@@ -1,7 +1,7 @@
 @echo off
 color 0A
 echo ========================================================
-echo        EP CODE AUTOMATIC WEBSITE UPDATER
+echo        NEWYONO CODE AUTOMATIC WEBSITE UPDATER
 echo ========================================================
 echo.
 
@@ -17,7 +17,7 @@ if not exist .git (
 
 :: Automatically set the correct GitHub URL
 "C:\Program Files\Git\bin\git.exe" remote remove origin 2>nul
-"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/kartikmpatel90-cyber/earn-telegram-site.git
+"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/kartikmpatel90-cyber/newyonocode.git
 
 echo Scanning for new images and code updates...
 "C:\Program Files\Git\bin\git.exe" add .
