@@ -192,13 +192,13 @@
  </header>
  <main class="main-content">
  <!-- Script for Mobile Toggle -->
- <script>
  
+<script>
     function showCategory(cat) {
         const yonoList = document.getElementById('yono-apps-list');
         const colourList = document.getElementById('colour-sites-list');
-        const yonoBtn = document.querySelector('.btn-yono');
-        const colourBtn = document.querySelector('.btn-colour');
+        const yonoBtn = document.getElementById('btn-yono');
+        const colourBtn = document.getElementById('btn-colour');
         
         if (cat === 'yono') {
             yonoList.style.display = 'flex';
@@ -211,34 +211,31 @@
             yonoBtn.classList.add('inactive');
             colourBtn.classList.remove('inactive');
         }
+        // Re-run search filter on the newly shown list if there is a term
+        filterGames();
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
- var toggleBtn = document.querySelector('.main-header-menu-toggle');
- // The menu list container
- // The menu list container
- var mobileNav = document.querySelector('.ast-mobile-header-wrap .main-navigation');
- var hamburgerIcon = document.querySelector('.ast-menu-svg');
- var closeIcon = document.querySelector('.ast-close-svg');
- if (toggleBtn && mobileNav) {
- toggleBtn.addEventListener('click', function (e) {
- e.preventDefault();
- // Simple toggle logic
- if (mobileNav.style.display === 'block') {
- mobileNav.style.display = 'none';
- toggleBtn.setAttribute('aria-expanded', 'false');
- if (hamburgerIcon) hamburgerIcon.style.display = 'block';
- if (closeIcon) closeIcon.style.display = 'none';
- } else {
- mobileNav.style.display = 'block';
- toggleBtn.setAttribute('aria-expanded', 'true');
- if (hamburgerIcon) hamburgerIcon.style.display = 'none';
- if (closeIcon) closeIcon.style.display = 'block';
- }
- });
- }
- });
- </script>
+    function filterGames() {
+        const term = document.getElementById('game-search').value.toLowerCase();
+        const cards = document.querySelectorAll('.game-card');
+        cards.forEach(card => {
+            const title = card.querySelector('.game-title').textContent.toLowerCase();
+            // Only filter if the card belongs to a visible list? 
+            // Actually, we can filter all, but only the active list will show them.
+            if (title.includes(term)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('game-search');
+        searchInput.addEventListener('input', filterGames);
+    });
+</script>
+
  <!-- SEO Banner -->
  <div class="seo-banner">
  <marquee scrollamount="6" style="margin: 0; padding: 0;">Welcome to NewYono Code , your #1 destination for all
@@ -303,8 +300,8 @@
  });
  </script>
  <div class="category-filters">
-    <button onclick="showCategory(\'yono\')" class="btn-cat btn-yono">Yono Apps</button>
-    <button onclick="showCategory(\'colour\')" class="btn-cat btn-colour inactive">Colour Site</button>
+    <button onclick="showCategory(\'yono\')" class="btn-cat btn-yono" id="btn-yono">Yono Apps</button>
+    <button onclick="showCategory(\'colour\')" class="btn-cat btn-colour inactive" id="btn-colour">Colour Site</button>
 </div>
 <div class="games-list" id="yono-apps-list" style="display: flex; flex-direction: column;">
 <div class="game-card hot-card">
