@@ -28,16 +28,22 @@ def extract_games():
         cards = re.split(r'<div class="game-card"', part_text)[1:] # Skip the first bit before first card
         results = []
         for card in cards:
-            title_match = re.search(r'class="game-title">(.*?)</h4>', card)
+            title_match = re.search(r'class="game-title">(.*?)</h4>', card, re.DOTALL)
             if not title_match:
                 title_match = re.search(r'alt="(.*?)"', card) # Fallback to alt text
+            
+            if title_match:
+                title = title_match.group(1).strip()
+                title = re.sub(r'<.*?>', '', title) # Strip HTML tags
+            else:
+                title = None
             
             link_match = re.search(r'href="(.*?)"', card)
             rank_match = re.search(r'class="game-rank">(\d+)</div>', card)
             
-            if title_match and link_match:
+            if title and link_match:
                 results.append({
-                    'title': title_match.group(1).strip(),
+                    'title': title,
                     'link': link_match.group(1).strip(),
                     'rank': rank_match.group(1) if rank_match else None,
                     'category': category
