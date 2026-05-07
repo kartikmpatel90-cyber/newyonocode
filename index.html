@@ -191,6 +191,74 @@
     }
 
     </style>
+
+<script>
+    function showCategory(cat) {
+        const yonoList = document.getElementById('yono-apps-list');
+        const colourList = document.getElementById('colour-sites-list');
+        const yonoBtn = document.getElementById('btn-yono');
+        const colourBtn = document.getElementById('btn-colour');
+        
+        if (cat === 'yono') {
+            yonoList.style.display = 'flex';
+            colourList.style.display = 'none';
+            yonoBtn.classList.remove('inactive');
+            colourBtn.classList.add('inactive');
+        } else {
+            yonoList.style.display = 'none';
+            colourList.style.display = 'flex';
+            yonoBtn.classList.add('inactive');
+            colourBtn.classList.remove('inactive');
+        }
+        filterGames();
+    }
+
+    function filterGames() {
+        const term = document.getElementById('game-search').value.toLowerCase();
+        const cards = document.querySelectorAll('.game-card');
+        cards.forEach(card => {
+            const title = card.querySelector('.game-title').textContent.toLowerCase();
+            if (title.includes(term)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function toggleMenu() {
+        const content = document.getElementById('menu-content');
+        content.classList.toggle('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('game-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', filterGames);
+        }
+        
+        // Swiper Initialization
+        if (typeof Swiper !== 'undefined') {
+            new Swiper(".mySwiper", {
+                spaceBetween: 15,
+                centeredSlides: true,
+                loop: true,
+                autoplay: { delay: 2500, disableOnInteraction: false },
+                pagination: { el: ".swiper-pagination", clickable: true },
+            });
+        }
+    });
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.menu-dots') && !event.target.matches('.menu-dots span')) {
+            const content = document.getElementById('menu-content');
+            if (content && content.classList.contains('active')) {
+                content.classList.remove('active');
+            }
+        }
+    }
+</script>
+
 </head>
 <body>
  <header style="background-color: var(--bg-header) !important;"
@@ -207,22 +275,14 @@
  class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
  <div class="ast-builder-layout-element ast-flex site-header-focus-item"
  data-section="title_tagline">
- <div class="site-branding ast-site-identity"
- itemtype="https://schema.org/Organization" itemscope="itemscope">
- <span class="site-logo-img">
- <a href="/" class="custom-logo-link" rel="home" aria-current="page">
- <img width="48" height="48" src="ep_code_logo.png" class="custom-logo"
- alt="NewYono Code" decoding="async">
- </a>
- </span>
- <div class="ast-site-title-wrap">
- <span class="site-title" itemprop="name">
- <a href="/" rel="home" itemprop="url">
- NewYono Code </a>
- </span>
- </div>
- </div>
- <!-- .site-branding -->
+ <div class="site-branding ast-site-identity">
+                    <span class="site-logo-img">
+                        <a href="/" class="custom-logo-link" rel="home"><img src="ep_code_logo.png" alt="EP Code" width="48" height="48"></a>
+                    </span>
+                    <div class="ast-site-title-wrap">
+                        <span class="site-title"><a href="/">NewYono Code</a></span>
+                    </div>
+                </div>
  </div>
  </div>
  <div
@@ -256,48 +316,9 @@
  <main class="main-content">
  <!-- Script for Mobile Toggle -->
  
-<script>
-    function showCategory(cat) {
-        const yonoList = document.getElementById('yono-apps-list');
-        const colourList = document.getElementById('colour-sites-list');
-        const yonoBtn = document.getElementById('btn-yono');
-        const colourBtn = document.getElementById('btn-colour');
-        
-        if (cat === 'yono') {
-            yonoList.style.display = 'flex';
-            colourList.style.display = 'none';
-            yonoBtn.classList.remove('inactive');
-            colourBtn.classList.add('inactive');
-        } else {
-            yonoList.style.display = 'none';
-            colourList.style.display = 'flex';
-            yonoBtn.classList.add('inactive');
-            colourBtn.classList.remove('inactive');
-        }
-        // Re-run search filter on the newly shown list if there is a term
-        filterGames();
-    }
 
-    function filterGames() {
-        const term = document.getElementById('game-search').value.toLowerCase();
-        const cards = document.querySelectorAll('.game-card');
-        cards.forEach(card => {
-            const title = card.querySelector('.game-title').textContent.toLowerCase();
-            // Only filter if the card belongs to a visible list? 
-            // Actually, we can filter all, but only the active list will show them.
-            if (title.includes(term)) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('game-search');
-        searchInput.addEventListener('input', filterGames);
-    });
-</script>
+
 
  <!-- SEO Banner -->
  <div class="seo-banner">
@@ -320,21 +341,7 @@
  <div class="swiper-pagination"></div>
  </div>
  </div>
- <script>
- var swiper = new Swiper(".mySwiper", {
- spaceBetween: 15,
- centeredSlides: true,
- loop: true,
- autoplay: {
- delay: 2500,
- disableOnInteraction: false,
- },
- pagination: {
- el: ".swiper-pagination",
- clickable: true,
- },
- });
- </script>
+ 
  <!-- Category Filters -->
  <!-- Search Box -->
  <div class="search-container">
@@ -343,23 +350,7 @@
  <input type="text" id="game-search" placeholder="Search apps or sites..." aria-label="Search">
  </div>
  </div>
- <script>
- document.addEventListener('DOMContentLoaded', function() {
- const searchInput = document.getElementById('game-search');
- searchInput.addEventListener('input', function(e) {
- const term = e.target.value.toLowerCase();
- const cards = document.querySelectorAll('.game-card');
- cards.forEach(card => {
- const title = card.querySelector('.game-title').textContent.toLowerCase();
- if (title.includes(term)) {
- card.style.display = 'flex';
- } else {
- card.style.display = 'none';
- }
- });
- });
- });
- </script>
+ 
  <div class="category-filters">
     <button onclick="showCategory('yono')" class="btn-cat btn-yono" id="btn-yono">Yono Apps</button>
     <button onclick="showCategory('colour')" class="btn-cat btn-colour inactive" id="btn-colour">Colour Site</button>
@@ -2146,33 +2137,91 @@
         
         <div class="footer-links">
             <a href="/" class="footer-link">Home</a>
-            <a href="https://telegram.me/epcode" target="_blank" class="footer-link"><i class="fab fa-telegram"></i> Telegram</a>
-            <a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-
-        <p class="footer-disclaimer">
-            <strong>Safety Warning:</strong> This website is intended for users 18 years or older. All games listed are for entertainment and informational purposes. Please play responsibly. We are not responsible for any losses incurred on third-party apps or websites.
-        </p>
-        <div class="footer-copy">
-            © 2026 NewYono Code - Your Trusted Yono Games Hub.
-        </div>
-    </div>
-</footer>
-
-<div class="seo-hidden">Jaiho 91 Yono Rummy Ind Rummy Rummy Ludo Spin101 GO GO RUMMY Yn777 Ind Slots Bingo101 Boss Rummy Yono Games Joy Rummy 567 Slots Ever777 Yono-777 Hindi 777 Rummy888 Good Slots Game Rummy Ok Rummy Yes Spin Love Rummy Share Slots MQM Bet Hi Rummy MBM BET Top Rummy Jaiho Slots Saga Slots Yono Arcade Spin777 ABC Rummy Jai Ho Rummy Jaiho 777 Rummy 91 Jai Ho Spin Jai Ho Arcade Neta Vip Slots Winner Slots Spin 789 Jackpots 101Z Spin Winner Spin Gold Yono Slots Spin Crush Rumble Rummy Yono VIP Club INR Maha Games Ind Club IN- 999 YaarWin Jaiho Win Jai club 91CLUB 55CLUB 51 GAME Bounty Game TIRANGA BDG WIN Tashan Game 6 Club 82 Lottery Sikkim Goa Game RAJA LUCK OKWIN All Yono Games, New Yono Apps, Yono Rummy Download, Best Colour Prediction Sites, Jaiho 91 App, YaarWin Official.</div>
-
-
-<a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank" class="float-wa">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<a href="https://telegram.me/epcode" target="_blank" class="float-tg">
-    <i class="fab fa-telegram-plane"></i>
-</a>
+            
 
 <a href="https://telegram.me/epcode" target="_blank" style="display: block;">
  <img src="ep_code_banner.png" alt="Promo Banner" style="width: 100%; max-width: 600px; margin: 0 auto; max-height: 80px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: block;">
  </a>
 <a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank" class="footer-link">WhatsApp</a>
+
+
+    <div class="menu-content" id="menu-content">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+        <a href="https://telegram.me/epcode" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.youtube.com/@Epsupport1" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<style>
+    .floating-social-row { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 9999; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #eee; }
+    .social-btn { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; text-decoration: none; transition: 0.3s; }
+    .social-btn.tg { background: #0088cc; }
+    .social-btn.wa { background: #25d366; }
+    .social-btn.yt { background: #ff0000; }
+    .social-btn:hover { transform: scale(1.1) translateY(-5px); }
+</style>
+
+
+<div class="three-dot-menu" id="three-dot-menu">
+    <div class="menu-dots" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="menu-content" id="menu-content">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+        <a href="https://telegram.me/epcode" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.youtube.com/@Epsupport1" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+    </div>
+</div>
+
+<div class="floating-social-row">
+    <a href="https://telegram.me/epcode" target="_blank" class="social-btn tg"><i class="fab fa-telegram-plane"></i></a>
+    <a href="https://whatsapp.com/channel/0029VaB2Jr07YSd9ARkGvL2M" target="_blank" class="social-btn wa"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.youtube.com/@Epsupport1" target="_blank" class="social-btn yt"><i class="fab fa-youtube"></i></a>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-warning">🔞 18+ Responsible Gaming</p>
+        <p class="footer-disclaimer">
+            Disclaimer: This site is for information purposes only. We do not promote illegal activities. 
+            Playing games involves financial risk. Please play responsibly.
+        </p>
+        <div class="footer-copy">© 2026 NewYono Code. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<style>
+    .three-dot-menu { position: fixed; top: 20px; right: 20px; z-index: 10001; }
+    .menu-dots { width: 45px; height: 45px; background: #fff; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #eee; }
+    .menu-dots span { width: 6px; height: 6px; background: #333; border-radius: 50%; }
+    .menu-content { position: absolute; top: 55px; right: 0; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; width: 200px; overflow: hidden; border: 1px solid #eee; }
+    .menu-content.active { display: block; }
+    .menu-content a { display: flex; align-items: center; gap: 15px; padding: 15px 25px; text-decoration: none; color: #333; font-size: 15px; border-bottom: 1px solid #f5f5f5; transition: 0.2s; }
+    .menu-content a:hover { background: #f8f9fa; color: #d80000; }
+    
+    .floating-social-row { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 10000; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 12px 25px; border-radius: 50px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.5); }
+    .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; text-decoration: none; transition: 0.3s; }
+    .social-btn.tg { background: #0088cc; }
+    .social-btn.wa { background: #25d366; }
+    .social-btn.yt { background: #ff0000; }
+    .social-btn:hover { transform: scale(1.1) translateY(-5px); }
+
+    .site-footer { background: #111; color: #aaa; padding: 50px 20px 100px; text-align: center; border-top: 1px solid #222; }
+    .footer-warning { color: #d80000; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
+    .footer-disclaimer { font-size: 12px; line-height: 1.6; max-width: 600px; margin: 0 auto 20px; }
+    .footer-copy { font-size: 13px; color: #555; }
+</style>
+
 </body>
 </html>
