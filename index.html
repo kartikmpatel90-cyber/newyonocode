@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,21 +11,18 @@
  <link rel="dns-prefetch" href="https://telegram.me/epcode" target="_blank">
  <link rel="preconnect" href="https://telegram.me/epcode" target="_blank" crossorigin>
  <link rel="canonical" href="https://newyonocode.vercel.app/">
-
  <!-- Open Graph / Facebook -->
  <meta property="og:type" content="website">
  <meta property="og:url" content="https://newyonocode.vercel.app/">
  <meta property="og:title" content="NewYono Code">
  <meta property="og:description" content="Get the latest NewYono Code and Yono Games. Search for new yono code and join our channel for daily earnings.">
  <meta property="og:image" content="ep_code_logo.png">
-
  <!-- Twitter -->
  <meta property="twitter:card" content="summary_large_image">
  <meta property="twitter:url" content="https://newyonocode.vercel.app/">
  <meta property="twitter:title" content="NewYono Code">
  <meta property="twitter:description" content="Get the latest NewYono Code and Yono Games. Search for new yono code and join our channel for daily earnings.">
  <meta property="twitter:image" content="ep_code_logo.png">
-
  <!-- Schema Markup -->
  <script type="application/ld+json">
  {
@@ -40,42 +36,27 @@
  "query-input": "required name=search_term_string"
  }
 } </script>
-
  <!-- Favicon -->
  <link rel="icon" type="image/x-icon" href="https://yonogames.site/uploads/favicon.png">
  <link rel="shortcut icon" href="https://yonogames.site/uploads/favicon.png">
-
  <!-- Performance: Preconnect to external image domains -->
  <link rel="dns-prefetch" href="https://telegram.me/epcode" target="_blank">
  <link rel="preconnect" href="https://telegram.me/epcode" target="_blank" crossorigin>
-
  <!-- CSS Dependencies from Scrape -->
  <link rel="stylesheet" href="https://yonogames.site/assets/css/astra-main.css">
  <link rel="stylesheet" href="https://yonogames.site/assets/css/elementor-frontend.css">
  <link rel="stylesheet" href="https://yonogames.site/assets/css/post-25.css">
  <link rel="stylesheet" href="https://yonogames.site/assets/css/style.css">
-
  <!-- Exact Astra Font -->
  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
  rel="stylesheet">
  <!-- Font Awesome (for Elementor icons if needed) -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
  <!-- SwiperJS for Rollable Banners -->
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
  <!-- Dynamic Theme Colors -->
  <!-- Dynamic Theme Colors -->
- 
-
-    
-    
-    
-
-    
-
-    
     <style>
     .games-list { 
         display: flex; 
@@ -123,22 +104,29 @@
     .game-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
     .game-details { flex-grow: 1; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
     .game-title { margin: 0 0 5px 0; font-size: 18px; font-weight: 700; color: #333; }
-    
     .hot-card { border: 2px solid #ff4757 !important; animation: glow 2s infinite alternate; background: #fff5f6 !important; }
     @keyframes glow { from { box-shadow: 0 0 5px #ff4757; } to { box-shadow: 0 0 20px #ff4757; } }
-    
     @media (max-width: 768px) {
         .game-card { padding: 10px; gap: 10px; }
         .game-image { width: 65px; height: 65px; }
         .game-title { font-size: 16px; }
         .game-details { flex-direction: column; align-items: flex-start; }
     }
+    
+    .search-container { padding: 10px 15px; margin-bottom: 5px; display: flex; justify-content: center; }
+    .search-box { position: relative; width: 100%; max-width: 400px; }
+    .search-box input { width: 100%; padding: 12px 15px 12px 40px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; outline: none; box-sizing: border-box; }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; pointer-events: none; }
+    
+    .category-filters { display: flex; justify-content: center; gap: 10px; margin: 20px 0; padding: 0 10px; }
+    .btn-cat { flex: 1; max-width: 200px; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 700; color: #fff; transition: 0.3s; text-align: center; cursor: pointer; border: none; }
+    .btn-yono { background: #d80000; }
+    .btn-colour { background: #009c18; }
+    .btn-cat.inactive { opacity: 0.4; filter: grayscale(0.8); }
+
     </style>
-
 </head>
-
 <body>
-
  <header style="background-color: var(--bg-header) !important;"
  class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
  id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
@@ -177,7 +165,6 @@
  data-section="section-hb-menu-1">
  <div class="ast-main-header-bar-alignment">
  <div class="main-header-bar-navigation">
- 
  </div>
  </div>
  </div>
@@ -195,25 +182,41 @@
  </div>
  </div>
  </div> <!-- Main Header Bar Wrap -->
-
  <!-- Mobile Header -->
- 
  </div>
  </div>
  </div>
  </header>
  <main class="main-content">
-
  <!-- Script for Mobile Toggle -->
  <script>
- document.addEventListener('DOMContentLoaded', function () {
+ 
+    function showCategory(cat) {
+        const yonoList = document.getElementById('yono-apps-list');
+        const colourList = document.getElementById('colour-sites-list');
+        const yonoBtn = document.querySelector('.btn-yono');
+        const colourBtn = document.querySelector('.btn-colour');
+        
+        if (cat === 'yono') {
+            yonoList.style.display = 'flex';
+            colourList.style.display = 'none';
+            yonoBtn.classList.remove('inactive');
+            colourBtn.classList.add('inactive');
+        } else {
+            yonoList.style.display = 'none';
+            colourList.style.display = 'flex';
+            yonoBtn.classList.add('inactive');
+            colourBtn.classList.remove('inactive');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
  var toggleBtn = document.querySelector('.main-header-menu-toggle');
  // The menu list container
  // The menu list container
  var mobileNav = document.querySelector('.ast-mobile-header-wrap .main-navigation');
  var hamburgerIcon = document.querySelector('.ast-menu-svg');
  var closeIcon = document.querySelector('.ast-close-svg');
-
  if (toggleBtn && mobileNav) {
  toggleBtn.addEventListener('click', function (e) {
  e.preventDefault();
@@ -241,7 +244,6 @@
  APK downloads for top-rated rummy and slot games including Jaiho 91, Spin Winner, Slots Winner, Jaiho Rummy, MKM
  Bet, and Ind Slots. </marquee>
  </div>
-
  <!-- Rollable / Promotional Banner -->
  <!-- Rollable / Promotional Banner (Multi-Slide) -->
  <div class="rollable-banner-container" style="margin: 15px 0; padding: 0 10px;">
@@ -257,7 +259,6 @@
  <div class="swiper-pagination"></div>
  </div>
  </div>
-
  <script>
  var swiper = new Swiper(".mySwiper", {
  spaceBetween: 15,
@@ -273,9 +274,7 @@
  },
  });
  </script>
-
  <!-- Category Filters -->
- 
  <!-- Search Box -->
  <div class="search-container">
  <div class="search-box">
@@ -283,17 +282,12 @@
  <input type="text" id="game-search" placeholder="Search apps or sites..." aria-label="Search">
  </div>
  </div>
-
- 
-
  <script>
  document.addEventListener('DOMContentLoaded', function() {
  const searchInput = document.getElementById('game-search');
- 
  searchInput.addEventListener('input', function(e) {
  const term = e.target.value.toLowerCase();
  const cards = document.querySelectorAll('.game-card');
- 
  cards.forEach(card => {
  const title = card.querySelector('.game-title').textContent.toLowerCase();
  if (title.includes(term)) {
@@ -305,13 +299,10 @@
  });
  });
  </script>
-
- 
- 
  <div class="category-filters">
- <a href="?category=yono" class="btn-cat">Yono Apps</a>
- <a href="?category=colour" class="btn-cat">Colour Site</a>
- </div>
+    <button onclick="showCategory(\'yono\')" class="btn-cat btn-yono">Yono Apps</button>
+    <button onclick="showCategory(\'colour\')" class="btn-cat btn-colour inactive">Colour Site</button>
+</div>
 <div class="games-list" id="yono-apps-list" style="display: flex; flex-direction: column;">
 <div class="game-card hot-card">
         <div class="game-rank">1</div>
@@ -340,6 +331,7 @@
                 <div class="mobile-withdraw-text" style="display:flex; align-items:center; gap:5px; margin-top:3px;">
                     <svg class="icon-home" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#009C18" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31.076a12 12 0 0 0 16.9 1.6l234.87-193.45a16 16 0 0 1 20.14 0l234.87 193.45a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg>
                     Min. Withdraw ₹100</div></div></div></div>
+</div></div><div class="games-list" id="colour-sites-list" style="display: none; flex-direction: column;">
 <div class="game-card">
         <div class="game-rank">2</div>
         <div class="game-image"><a href="/yonorummy/"><img src="logo_yonorummy.png" alt="Yono Rummy" onerror="this.src='ep_code_logo.png'" loading="lazy" width="100" height="100" style="border-radius:15px;"></a></div>
@@ -1717,7 +1709,6 @@
                 <div class="mobile-withdraw-text" style="display:flex; align-items:center; gap:5px; margin-top:3px;">
                     <svg class="icon-home" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#009C18" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31.076a12 12 0 0 0 16.9 1.6l234.87-193.45a16 16 0 0 1 20.14 0l234.87 193.45a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg>
                     Min. Withdraw ₹100</div></div></div></div>
-</div></div><div class="games-list" id="colour-sites-list" style="display: none; flex-direction: column;">
 <div class="game-card">
         <div class="game-rank">1</div>
         <div class="game-image"><a href="/yaarwin/"><img src="logo_yaarwin.jpg" alt="YaarWin" onerror="this.src='ep_code_logo.png'" loading="lazy" width="100" height="100" style="border-radius:15px;"></a></div>
@@ -2151,14 +2142,5 @@
                     <svg class="icon-home" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#009C18" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31.076a12 12 0 0 0 16.9 1.6l234.87-193.45a16 16 0 0 1 20.14 0l234.87 193.45a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg>
                     Min. Withdraw ₹100</div></div></div></div>
 </div></div>
-
-    <div class="seo-tags-section">
-        <h3 class="seo-title">Related Games & Tags</h3>
-        <div class="seo-tags-container">
-            <a href="/jaiho91/" class="seo-tag">Jaiho 91</a> <a href="/yonorummy/" class="seo-tag">Yono Rummy</a> <a href="/indrummy/" class="seo-tag">Ind Rummy</a> <a href="/rummyludo/" class="seo-tag">Rummy Ludo</a> <a href="/spin101/" class="seo-tag">Spin101</a> <a href="/gogorummy/" class="seo-tag">GO GO RUMMY</a> <a href="/yn777/" class="seo-tag">Yn777</a> <a href="/indslots/" class="seo-tag">Ind Slots</a> <a href="/bingo101/" class="seo-tag">Bingo101</a> <a href="/bossrummy/" class="seo-tag">Boss Rummy</a> <a href="/yonogames/" class="seo-tag">Yono Games</a> <a href="/joyrummy/" class="seo-tag">Joy Rummy</a> <a href="/567slots/" class="seo-tag">567 Slots</a> <a href="/ever777/" class="seo-tag">Ever777</a> <a href="/yono-777/" class="seo-tag">Yono-777</a> <a href="/hindi777/" class="seo-tag">Hindi 777</a> <a href="/rummy888/" class="seo-tag">Rummy888</a> <a href="/goodslots/" class="seo-tag">Good Slots</a> <a href="/gamerummy/" class="seo-tag">Game Rummy</a> <a href="/okrummy/" class="seo-tag">Ok Rummy</a> <a href="/yesspin/" class="seo-tag">Yes Spin</a> <a href="/loverummy/" class="seo-tag">Love Rummy</a> <a href="/shareslots/" class="seo-tag">Share Slots</a> <a href="/mqmbet/" class="seo-tag">MQM Bet</a> <a href="/hirummy/" class="seo-tag">Hi Rummy</a> <a href="/mbmbet/" class="seo-tag">MBM BET</a> <a href="/toprummy/" class="seo-tag">Top Rummy</a> <a href="/jaihoslots/" class="seo-tag">Jaiho Slots</a> <a href="/sagaslots/" class="seo-tag">Saga Slots</a> <a href="/yonoarcade/" class="seo-tag">Yono Arcade</a> <a href="/spin777/" class="seo-tag">Spin777</a> <a href="/abcrummy/" class="seo-tag">ABC Rummy</a> <a href="/jaihorummy/" class="seo-tag">Jai Ho Rummy</a> <a href="/jaiho777/" class="seo-tag">Jaiho 777</a> <a href="/rummy91/" class="seo-tag">Rummy 91</a> <a href="/jaihospin/" class="seo-tag">Jai Ho Spin</a> <a href="/jaihoarcade/" class="seo-tag">Jai Ho Arcade</a> <a href="/netavip/" class="seo-tag">Neta Vip</a> <a href="/slotswinner/" class="seo-tag">Slots Winner</a> <a href="/slotsspin/" class="seo-tag">Slots Spin</a> <a href="/789jackpots/" class="seo-tag">789 Jackpots</a> <a href="/101z/" class="seo-tag">101Z</a> <a href="/spinwinner/" class="seo-tag">Spin Winner</a> <a href="/spingold/" class="seo-tag">Spin Gold</a> <a href="/yonoslots/" class="seo-tag">Yono Slots</a> <a href="/spincrush/" class="seo-tag">Spin Crush</a> <a href="/rumblerummy/" class="seo-tag">Rumble Rummy</a> <a href="/yonovip/" class="seo-tag">Yono VIP</a> <a href="/clubinr/" class="seo-tag">Club INR</a> <a href="/mahagames/" class="seo-tag">Maha Games</a> <a href="/indclub/" class="seo-tag">Ind Club</a> <a href="/in-999/" class="seo-tag">IN- 999</a> <a href="/yaarwin/" class="seo-tag">YaarWin</a> <a href="/jaihowin/" class="seo-tag">Jaiho Win</a> <a href="/jaiclub/" class="seo-tag">Jai club</a> <a href="/91club/" class="seo-tag">91CLUB</a> <a href="/55club/" class="seo-tag">55CLUB</a> <a href="/51game/" class="seo-tag">51 GAME</a> <a href="/bountygame/" class="seo-tag">Bounty Game</a> <a href="/tiranga/" class="seo-tag">TIRANGA</a> <a href="/bdgwin/" class="seo-tag">BDG WIN</a> <a href="/tashangame/" class="seo-tag">Tashan Game</a> <a href="/6club/" class="seo-tag">6 Club</a> <a href="/82lottery/" class="seo-tag">82 Lottery</a> <a href="/sikkim/" class="seo-tag">Sikkim</a> <a href="/goagame/" class="seo-tag">Goa Game</a> <a href="/rajaluck/" class="seo-tag">RAJA LUCK</a> <a href="/okwin/" class="seo-tag">OKWIN</a> 
-        </div>
-    </div>
-
 </body>
-
 </html>
